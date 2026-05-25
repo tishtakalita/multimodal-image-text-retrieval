@@ -1,4 +1,4 @@
-# Multimodal Image-Text Retreival (Flickr8k)
+# Multimodal Image-Text Retrieval (Flickr8k)
 
 ## Overview
 This project explores cross-modal retrieval — given an image, retrieve the most relevant captions, and given a caption, retrieve the most relevant image. Six experiments were conducted on the Flickr8k dataset, progressively upgrading encoder architectures from a simple GRU baseline to a ViT + SBERT setup. All experiments were trained using symmetric contrastive loss and evaluated using Recall@K and t-SNE visualization.
@@ -40,4 +40,9 @@ Flickr8k — 8,000 images each with 5 captions (40,000 pairs total). Data is not
 - `06_blip2_prompting.ipynb` — Explores few-shot, chain-of-thought, and self-consistency prompting with BLIP-2
 
 ## Status
-Experiment 1 completed. Experiment 2 in progress. 
+- [x] Experiment 1 — Complete
+- [ ] Experiment 2
+- [ ] Experiment 3
+- [ ] Experiment 4
+- [ ] Experiment 5
+- [ ] Experiment 6
