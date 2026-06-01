@@ -1,7 +1,7 @@
-# Multimodal Image-Text Retrieval (Flickr8k)
+# Multimodal Image-Text Retrieval
 
 ## Overview
-This project explores cross-modal retrieval — given an image, retrieve the most relevant captions, and given a caption, retrieve the most relevant image. Six experiments were conducted on the Flickr8k dataset, progressively upgrading encoder architectures from a simple GRU baseline to a ViT + SBERT setup. All experiments were trained using symmetric contrastive loss and evaluated using Recall@K and t-SNE visualization.
+This project explores cross-modal retrieval — given an image, retrieve the most relevant captions, and given a caption, retrieve the most relevant image. Five experiments were conducted on the Flickr8k dataset, progressively upgrading encoder architectures from ResNet18+GRU to ViT-B/16+SBERT. All experiments were trained using symmetric contrastive loss and evaluated using Recall@K and t-SNE visualization.
 
 ## Experiments
 | Exp | Image Encoder | Text Encoder |
@@ -11,17 +11,19 @@ This project explores cross-modal retrieval — given an image, retrieve the mos
 | 3 | ResNet18 | Bi-GRU + Self-Attention |
 | 4 | ResNet18 | Bi-GRU + BERT embeddings | 
 | 5 | ViT (vit_base_patch16_224) | SBERT (all-MiniLM-L6-v2) |
-| 6 | | |
 
 ## Data
 Flickr8k — 8,000 images each with 5 captions (40,000 pairs total). Data is not included in this repository. Download from [Kaggle](https://www.kaggle.com/datasets/adityajn105/flickr8k) and place in `data/` as described in `data/README.md`.
 
 ## Methodology
-- Same train/test split (80/20) across all experiments using `random_state=42`
+- Same train/test split (80/20) across all experiments 
+- Same embedding dimension (256)
 - Same loss function across all experiments — symmetric contrastive loss
-- Same evaluation metrics — Recall@1, Recall@5, Recall@10 for both Image→Text and Text→Image directions
-- Same embedding dimension (256) for fair comparison
+- Same evaluation metrics — Recall@1, Recall@5, Recall@10 for both Image-to-Text and Text-to-Image directions
 - Controlled setup ensures differences in results are due to architecture choices only
+
+## Checkpoints
+The `checkpoints/` folder is empty by default. Model checkpoints are not included in this repository due to file size. When you run a notebook, the trained checkpoint will be saved locally to `checkpoints/` automatically.
 
 ## Results
 | Exp | I→T R@1 | I→T R@5 | I→T R@10 | T→I R@1 | T→I R@5 | T→I R@10 |
@@ -31,12 +33,3 @@ Flickr8k — 8,000 images each with 5 captions (40,000 pairs total). Data is not
 | 3 — ResNet18 + Bi-GRU + Attention | 0.1365 | 0.3348 | 0.4497 | 0.1033 | 0.2855 | 0.3994 |
 | 4 — ResNet18 + Bi-GRU + BERT | 0.1507 | 0.3589 | 0.4775 | 0.1211 | 0.3323 | 0.4621 |
 | 5 — ViT + SBERT | 0.2174 | 0.4719 | 0.5954 | 0.2051 | 0.4562 | 0.5823 |
-| 6 — | | | | | | |
-
-## Status
-- [x] Experiment 1
-- [x] Experiment 2
-- [x] Experiment 3
-- [x] Experiment 4
-- [x] Experiment 5
-- [ ] Experiment 6
